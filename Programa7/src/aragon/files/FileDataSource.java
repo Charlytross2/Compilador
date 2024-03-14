@@ -28,7 +28,9 @@ public class FileDataSource {
         }
         matrix = new int[Integer.parseInt(rows)][Integer.parseInt(cols) + 1];
 
-        language = getSplitLine(lines.get(1));
+        String[] lineLanguage = getSplitLine(lines.get(1));
+        language = new String[lineLanguage.length + 1];
+        System.arraycopy(lineLanguage, 0, language, 0, lineLanguage.length);
         language[language.length - 1] = ";";
 
         AtomicInteger row = new AtomicInteger(0);
@@ -72,8 +74,12 @@ public class FileDataSource {
         return Paths.get(filePath);
     }
 
-    public static String[] getLanguage() {
-        return language;
+    public static char[] getLanguage() {
+        char[] arr = new char[language.length];
+        for (int i = 0; i < language.length; i++) {
+            arr[i] = language[i].charAt(0);
+        }
+        return arr;
     }
 
 }
