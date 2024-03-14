@@ -17,12 +17,8 @@ public class Main {
             for (String source : sources) {
                 core.setToken(source);
                 int result = core.init();
-                String response = result == 1 ? " is Valid" : " is Invalid";
-                if (result == 1) {
-                    System.out.println(source + response);
-                } else {
-                    System.out.println(source + response);
-                }
+                String response = result == Core.ACCEPTED_STATE ? " is Valid" : " is Invalid";
+                System.out.println(source + response);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
